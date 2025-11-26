@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Verse</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        /* Optional: Smooth scrolling for better UX */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+
+</head>
+
+
+
+
+<body class="font-sans antialiased bg-gray-50">
+
+
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between h-8">
+                <a href="#" class="text-2xl font-extrabold text-indigo-700 tracking-wider">
+                    <i class="fas fa-brain text-purple-500 mr-2"></i> QuizVerse
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+
+
+
+    
+    <main class="min-h-screen bg-gray-50 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        
+        {% block content %}
+        
+        {% endblock content %}
+        
+    </main>
+    
+    
+
+
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto text-center text-sm text-gray-400">
+            &copy; 2025 QuizVerse. All rights reserved. Built with <i class="fas fa-heart text-red-500"></i>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>

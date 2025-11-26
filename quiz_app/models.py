@@ -15,7 +15,7 @@ class Question(models.Model):
 
     text = models.CharField(max_length=255)
 
-    def __init__(self):
+    def __str__(self):
         return self.text
     
 
@@ -27,14 +27,14 @@ class Question(models.Model):
 # 4 Choices
 class Choice(models.Model):
 
-    text = models.CharField(max_length=255)                                          # the option
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')                    # 1 Question will have many Multiple Choices;  [[related_name='choices'-> backward relationship]-- used to kon question er jonno kon options
 
-    is_correct = models.BooleanField(default=False)                                   # which field is correct; If not chosen then it will consider it as false
+    text = models.CharField(max_length=255)                                             # the option
+
+    is_correct = models.BooleanField(default=False)                                     # which field is correct; If not chosen then it will consider it as false
 
 
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='choices')                    # 1 Question will many Multiple Choices;
 
-
-    def __init__(self):
+    def __str__(self):
         return self.text
 

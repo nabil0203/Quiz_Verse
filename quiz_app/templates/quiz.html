@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% comment %} 
+-----------------------------This is the main functionality------------------
+    <section>
+
+      <h2>Total Questions: {{ questions|length }}</h2>
+      
+      <form method="post">
+        {% csrf_token %}
+
+         <!-- outer loop for questions -->
+        {% for questions in questions %}
+
+          <div>
+            <h2>{{ questions.text }}</h2>
+
+            <!-- Inner loop for options of the specific questions -->
+            {% for choice in questions.choices.all %}
+
+              <div>
+                <input type="radio" name="{{ questions.id }}" value="{{ choice.id }}"/>
+                <label for="">{{ choice.text }}</label>
+              </div>
+
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        <button type="submit">
+          Submit Quiz
+        </button>
+      </form>
+
+    </section>
+
+ {% endcomment %}
+
+
+
+
+
+
+
+
+<!--------------Added Design on those functionality in this part----------------------->
+
+
+<div class="w-full max-w-4xl lg:max-w-5xl">
+        <section class="bg-white shadow-3xl p-6 sm:p-10 lg:p-12 rounded-2xl border-4 border-indigo-100/50">
+
+            <header class="mb-10 pb-6 border-b-4 border-indigo-500">
+                <h1 class="text-5xl font-extrabold text-gray-800 tracking-tight flex items-center">
+                    <i class="fas fa-scroll text-indigo-500 mr-3"></i> Quiz Challenge
+                </h1>
+                <p class="text-xl text-purple-600 font-medium mt-3">
+                    Test your knowledge! Total Questions: <span class="font-bold">{{ questions|length }}</span>
+                </p>
+            </header>
+
+            <form method="post" class="space-y-12">
+                {% csrf_token %}
+
+                {% for question in questions %}
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                        
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-start leading-snug">
+                            <span class="text-purple-600 font-extrabold mr-3 text-3xl">Q{{ forloop.counter }}.</span>
+                            <span class="pt-1">{{ question.text }}</span>
+                        </h2>
+
+                        <div class="space-y-4 pl-8">
+                            {% for choice in question.choices.all %}
+
+                                <label class="flex items-center p-4 rounded-lg bg-indigo-50 border-2 border-indigo-100 cursor-pointer hover:bg-indigo-100 transition duration-200 group has-[:checked]:bg-indigo-200 has-[:checked]:border-indigo-500 has-[:checked]:shadow-md">
+                                    
+                                    <input 
+                                        type="radio" 
+                                        name="{{ question.id }}" 
+                                        value="{{ choice.id }}"
+                                        class="form-radio h-6 w-6 text-indigo-600 border-gray-300 focus:ring-indigo-500 checked:bg-indigo-600 checked:border-transparent"
+                                    />
+                                    
+                                    <span class="ml-4 text-lg font-medium text-gray-700 group-hover:text-gray-900">
+                                        {{ choice.text }}
+                                    </span>
+                                </label>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                <div class="pt-8 border-t-2 border-gray-200 flex justify-center">
+                    <button type="submit" class="w-full sm:w-2/3 lg:w-1/2 bg-green-600 hover:bg-green-700 text-white font-extrabold py-4 px-10 rounded-full shadow-2xl transition duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-70 text-xl flex items-center justify-center">
+                        <i class="fas fa-check-circle mr-3"></i> Submit Quiz
+                    </button>
+                </div>
+            </form>
+
+        </section>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}
